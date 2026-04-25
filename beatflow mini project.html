@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Spotify Mini App</title>
+
+    <style>
+        body {
+            background: linear-gradient(135deg, #1db954, #191414);
+            font-family: Arial, sans-serif;
+            height: 100vh;
+            display: flex; 
+            justify-content: center;
+            align-items: center;
+            color: white;
+            margin: 0;
+        }
+
+        button {
+            background: #1db954;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 25px;
+            cursor: pointer;
+            color: black;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: #1ed760;
+        }
+
+        .home {
+            text-align: center;
+        }
+
+        .home h1 {
+            color: #1db954;
+            font-size: 36px;
+        }
+
+        .login, .player {
+            background: #121212;
+            width: 300px;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            display: none;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+        }
+
+        .login input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: none;
+            outline: none;
+        }
+
+        .player img {
+            width: 200px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .player h2 {
+            color: #1db954;
+        }
+
+        audio {
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .link {
+            color: #1db954;
+            cursor: pointer;
+            display: block;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- HOME -->
+<div class="home" id="homePage">
+    <h1>🎧 Spotify Mini App</h1>
+    <p>Listen to your favorite music</p>
+    <button onclick="openLogin()">Login</button>
+</div>
+
+<!-- LOGIN -->
+<div class="login" id="loginPage">
+    <h2>🔐 Login</h2>
+    <input type="text" id="username" placeholder="Username">
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="login()">Login</button>
+    <span class="link" onclick="goHome()">⬅ Back to Home</span>
+</div>
+
+<!-- PLAYER -->
+<div class="player" id="playerPage">
+    <h2>🎵 Spotify Player</h2>
+
+    <!-- FIXED IMAGE LINK -->
+    <img src="yellow-vintage-music-concept-with-headphones_23-2147684989.avif" alt="Song Cover">
+
+    <h3>Song Name</h3>
+    <p>Artist Name</p>
+
+    <!-- FIXED AUDIO FILE -->
+    <audio controls>
+        <source src="song.mp3" type="audio/mpeg">
+        Your browser does not support audio.
+    </audio>
+
+    <span class="link" onclick="logout()">🚪 Logout</span>
+</div>
+
+<script>
+    function openLogin() {
+        document.getElementById("homePage").style.display = "none";
+        document.getElementById("loginPage").style.display = "block";
+    }
+
+    function goHome() {
+        document.getElementById("loginPage").style.display = "none";
+        document.getElementById("homePage").style.display = "block";
+    }
+
+    function login() {
+        let user = document.getElementById("username").value;
+        let pass = document.getElementById("password").value;
+
+        if (user === "" || pass === "") {
+            alert("Please enter username and password");
+        } else {
+            alert("Login Successful 🎉");
+            document.getElementById("loginPage").style.display = "none";
+            document.getElementById("playerPage").style.display = "block";
+        }
+    }
+
+    function logout() {
+        document.getElementById("playerPage").style.display = "none";
+        document.getElementById("homePage").style.display = "block";
+    }
+</script>
+
+</body>
+</html>
